@@ -201,14 +201,11 @@
   <footer><div class="wrap">Jenny Capretta · Biomedical Engineering Student</div></footer>
   <script>
     const getInTouchLink = document.getElementById("get-in-touch");
-    const mobileViewport = window.matchMedia("(max-width: 760px)");
+    const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+      || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     const mobileEmailDraft = "mailto:jennycap20@gmail.com?subject=Portfolio%20inquiry";
     const desktopEmailDraft = "https://mail.google.com/mail/?view=cm&fs=1&to=jennycap20%40gmail.com&su=Portfolio%20inquiry";
-    const updateEmailDraftLink = () => {
-      getInTouchLink.href = mobileViewport.matches ? mobileEmailDraft : desktopEmailDraft;
-    };
-    updateEmailDraftLink();
-    mobileViewport.addEventListener("change", updateEmailDraftLink);
+    getInTouchLink.href = isMobileDevice ? mobileEmailDraft : desktopEmailDraft;
   </script>
 </body>
 </html>
